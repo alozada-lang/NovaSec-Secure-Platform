@@ -7,6 +7,7 @@
 <%@page import="java.util.List"%>
 <%@page import="modelo.Consejo"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,6 +17,9 @@
     </head>
     <body class="bg-light">
         <div class="container mt-5">
+            <div class="mb-4 mt-3">
+    <a href="indexdos.jsp" class="btn btn-secondary">⬅️ Volver al Inicio</a>
+
             <h2 class="text-center mb-4">Plataforma de Seguridad Informática Personal</h2>
             
             <div class="row">

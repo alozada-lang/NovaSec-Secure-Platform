@@ -8,6 +8,7 @@
         <filter-name>WafFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    
     <servlet>
         <servlet-name>Controlador</servlet-name>
         <servlet-class>controlador.Controlador</servlet-class>
@@ -16,17 +17,21 @@
         <servlet-name>Controlador</servlet-name>
         <url-pattern>/Controlador</url-pattern>
     </servlet-mapping>
+    
     <session-config>
-        <session-timeout>
-            30
-        </session-timeout>
+        <session-timeout>30</session-timeout>
     </session-config>
+    
     <error-page>
-    <error-code>404</error-code>
-    <location>/error404.jsp</location>
+        <error-code>404</error-code>
+        <location>/error404.jsp</location>
     </error-page>
     <error-page>
-    <error-code>500</error-code>
-    <location>/error500.jsp</location>
+        <error-code>500</error-code>
+        <location>/error500.jsp</location>
     </error-page>
+
+    <welcome-file-list>
+        <welcome-file>indexdos.jsp</welcome-file>
+    </welcome-file-list>
 </web-app>
