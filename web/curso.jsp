@@ -13,7 +13,6 @@
     response.setHeader("Pragma", "no-cache");
     response.setDateHeader("Expires", 0);
     
-    // 🔥 LÓGICA DE PROGRESO (Solo se declara una vez aquí arriba)
     int totalLecciones = 2; 
     int leccionActual = userLogueado.getProgreso();
     
@@ -27,127 +26,169 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Curso - Shield Lozada</title>
+    <title>Academia NovaSec - Curso</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        .sidebar { min-height: 100vh; background: #212529; color: white; }
-        .nav-link { color: #adb5bd; }
-        .nav-link:hover { color: white; }
-        .progress { height: 25px; }
+        body { background-color: #f8f9fa; font-family: 'Segoe UI', sans-serif; }
+        
+        /* Sidebar Estilo Dashboard */
+        .sidebar { 
+            min-height: 100vh; 
+            background: #1a1d20; 
+            color: white; 
+            box-shadow: 4px 0 10px rgba(0,0,0,0.1);
+        }
+        .nav-link { 
+            color: #ced4da; 
+            border-radius: 8px;
+            margin-bottom: 5px;
+            transition: 0.3s;
+        }
+        .nav-link:hover { background: rgba(255,255,255,0.1); color: #0dcaf0; }
+        .nav-link.active { background: #0dcaf0; color: #1a1d20; fw-bold; }
+        
+        /* Contenido Principal */
+        .main-content { padding: 40px; }
+        .video-container { 
+            border-radius: 15px; 
+            overflow: hidden; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15); 
+        }
+        .progress { height: 12px; border-radius: 10px; background-color: #343a40; }
+        .card-quiz { border: none; border-radius: 15px; border-left: 5px solid #0dcaf0; }
+        
+        .congrats-card {
+            background: linear-gradient(135deg, #ffffff 0%, #e3f2fd 100%);
+            border: none;
+            border-radius: 20px;
+        }
     </style>
 </head>
 <body>
 <div class="container-fluid">
     <div class="row">
-        <nav class="col-md-3 col-lg-2 d-md-block sidebar p-3">
-            <h4 class="text-center">Módulos</h4>
-            <hr>
-            <div class="mb-4">
-                <small>Tu progreso: <%= porcentaje %>%</small>
-                <div class="progress mt-2">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: <%= porcentaje %>%;"></div>
-                </div>
+        <nav class="col-md-3 col-lg-2 d-md-block sidebar p-4">
+            <div class="text-center mb-4">
+                <i class="fas fa-graduation-cap fa-3x text-info mb-2"></i>
+                <h5 class="fw-bold">NovaSec Academy</h5>
             </div>
-            <ul class="nav flex-column mb-4">
-                <li class="nav-item"><a class="nav-link" href="curso.jsp?leccion=1">Lección 1</a></li>
-                <li class="nav-item"><a class="nav-link" href="curso.jsp?leccion=2">Lección 2</a></li>
+            
+            <div class="mb-4 text-center">
+                <p class="small mb-1 text-uppercase text-muted">Progreso General</p>
+                <div class="progress mb-2">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" 
+                         role="progressbar" style="width: <%= porcentaje %>%;"></div>
+                </div>
+                <span class="badge bg-info text-dark"><%= porcentaje %>% completado</span>
+            </div>
+
+            <hr class="text-muted">
+            <p class="small text-muted text-uppercase fw-bold">Módulos del Curso</p>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link <%= (request.getParameter("leccion") == null || "1".equals(request.getParameter("leccion"))) ? "active" : "" %>" 
+                       href="curso.jsp?leccion=1">
+                        <i class="fas fa-play-circle me-2"></i> Lección 1
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <%= "2".equals(request.getParameter("leccion")) ? "active" : "" %>" 
+                       href="curso.jsp?leccion=2">
+                        <i class="fas fa-play-circle me-2"></i> Lección 2
+                    </a>
+                </li>
             </ul>
-            <hr class="text-white"> 
-            <div class="d-grid gap-2 mt-3">
-                <a href="indexdos.jsp" class="btn btn-outline-light btn-sm">⬅️ Regresar al Inicio</a>
+
+            <div class="mt-5 d-grid">
+                <a href="indexdos.jsp" class="btn btn-outline-light btn-sm rounded-pill">
+                    <i class="fas fa-home me-2"></i> Panel Principal
+                </a>
             </div>
         </nav>
 
-        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
+        <main class="col-md-9 ms-sm-auto col-lg-10 main-content">
             <%
                 String leccionParam = request.getParameter("leccion");
                 int idLeccion = (leccionParam != null) ? Integer.parseInt(leccionParam) : 1;
                 
-                // Si la lección solicitada es mayor a las que tenemos (Lección 3 o más)
                 if (idLeccion > totalLecciones) {
             %>
-                <div class="card shadow border-success mt-5">
-                    <div class="card-body text-center p-5">
-                        <h1 class="text-success">¡Felicidades, <%= userLogueado.getUser() %>! 🎉</h1>
-                        <p class="lead mt-3">Has concluido exitosamente todas las lecciones. Sigue aprendiendo en otras secciones de la página.</p>
-                        <hr class="my-4">
+                <div class="card congrats-card shadow-lg p-5 text-center">
+                    <div class="card-body">
+                        <div class="mb-4">
+                            <i class="fas fa-award fa-5x text-warning animate__animated animate__bounceIn"></i>
+                        </div>
+                        <h1 class="display-4 fw-bold text-dark">¡Enhorabuena, <%= userLogueado.getUser() %>!</h1>
+                        <p class="lead text-muted">Has completado el entrenamiento en IA Generativa y Seguridad.</p>
                         
-                        <div class="text-start bg-light p-4 rounded shadow-sm">
-                            <h4 class="text-primary">📬 Buzón de Comentarios</h4>
-                            <p class="text-muted">¿Qué te pareció el curso? Déjanos tu opinión.</p>
-                            
-                            <form action="Controlador" method="POST">
-                                <div class="mb-3">
-                                    <label class="form-label fw-bold">Usuario:</label>
-                                    <input type="text" class="form-control" value="<%= userLogueado.getUser() %>" disabled>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="mensaje" class="form-label fw-bold">Tu mensaje:</label>
-                                    <textarea class="form-control" id="mensaje" name="mensaje" rows="4" placeholder="Escribe aquí tu experiencia..." required></textarea>
-                                </div>
-                                <div class="d-flex justify-content-between mt-4">
-                                    <a href="indexdos.jsp" class="btn btn-outline-secondary">Volver al Inicio</a>
-                                    <button type="submit" name="accion" value="GuardarComentario" class="btn btn-success">
-                                        Enviar Comentario
+                        <div class="row justify-content-center mt-5">
+                            <div class="col-md-8 text-start bg-white p-4 rounded-4 shadow-sm">
+                                <h4 class="text-primary fw-bold mb-3"><i class="fas fa-comment-dots"></i> Feedback del Estudiante</h4>
+                                <form action="Controlador" method="POST">
+                                    <div class="mb-3">
+                                        <label class="form-label text-muted">Usuario Activo</label>
+                                        <input type="text" class="form-control bg-light" value="<%= userLogueado.getUser() %>" disabled>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label fw-bold">¿Qué te pareció el contenido?</label>
+                                        <textarea class="form-control" name="mensaje" rows="4" placeholder="Tu opinión nos ayuda a mejorar..." required></textarea>
+                                    </div>
+                                    <button type="submit" name="accion" value="GuardarComentario" class="btn btn-primary btn-lg w-100 rounded-pill">
+                                        Enviar y Finalizar <i class="fas fa-paper-plane ms-2"></i>
                                     </button>
-                                </div>
-                            </form>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             <% } else { 
-                // --- CONFIGURACIÓN DINÁMICA POR LECCIÓN ---
-                String titulo = "";
-                String videoID = "";
-                String pregunta = "";
-                String opcionA = "";
-                String opcionB = "";
-
-                if (idLeccion == 1) {
-                    titulo = "Introducción a la IA Generativa";
-                    videoID = "dQw4w9WgXcQ"; // Video de prueba (Rickroll)
-                    pregunta = "¿Qué es una 'alucinación' de la IA?";
-                    opcionA = "Cuando la IA inventa datos falsos.";
-                    opcionB = "Cuando la IA se apaga sola.";
-                } else if (idLeccion == 2) {
-                    titulo = "Módulo 2: ¿Qué es la inteligencia artificial?";
-                    videoID = "BaaUbPSaZFo"; // 🔥 CAMBIA ESTE ID POR EL DE TU VIDEO DE YT
-                    pregunta = "¿Cuál es una buena práctica de uso?";
-                    opcionA = "Validar la información generada.";
-                    opcionB = "Ataque físico a los servidores de la empresa";
-                }
+                String titulo = (idLeccion == 1) ? "Introducción a la IA Generativa" : "Módulo 2: Ética y Buenas Prácticas";
+                String videoID = (idLeccion == 1) ? "dQw4w9WgXcQ" : "BaaUbPSaZFo";
+                String pregunta = (idLeccion == 1) ? "¿Qué es una 'alucinación' de la IA?" : "¿Cuál es una buena práctica de uso?";
+                String opcionA = (idLeccion == 1) ? "Cuando la IA inventa datos falsos." : "Validar siempre la información generada.";
+                String opcionB = (idLeccion == 1) ? "Cuando la IA se queda sin internet." : "Copiar y pegar sin revisar nada.";
             %>
             
-                <h2><%= titulo %></h2>
-                <div class="ratio ratio-16x9 mb-4 shadow">
+                <div class="d-flex align-items-center mb-4">
+                    <div class="bg-info p-3 rounded-3 me-3 text-white">
+                        <i class="fas fa-book-open fa-2x"></i>
+                    </div>
+                    <div>
+                        <h6 class="text-muted mb-0 text-uppercase">Lección <%= idLeccion %></h6>
+                        <h2 class="fw-bold m-0"><%= titulo %></h2>
+                    </div>
+                </div>
+
+                <div class="video-container ratio ratio-16x9 mb-5">
                     <iframe src="https://www.youtube.com/embed/<%= videoID %>" allowfullscreen></iframe>
                 </div>
 
-                <div class="card shadow-sm mt-4">
-                    <div class="card-body">
-                        <h4>📝 Mini Encuesta de Validación</h4>
+                <div class="card card-quiz shadow-sm">
+                    <div class="card-body p-4">
+                        <h4 class="fw-bold mb-4 text-dark"><i class="fas fa-question-circle text-info me-2"></i> Comprobación de Aprendizaje</h4>
                         <form action="Controlador" method="POST">
                             <input type="hidden" name="leccionID" value="<%= idLeccion %>">
+                            <p class="fs-5 mb-4"><%= pregunta %></p>
                             
-                            <p>1. <%= pregunta %></p>
-                            
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q1" value="0" required>
-                                <label class="form-check-label"><%= opcionA %></label>
+                            <div class="list-group mb-4">
+                                <label class="list-group-item d-flex gap-3 py-3 border-0 bg-light rounded-3 mb-2">
+                                    <input class="form-check-input flex-shrink-0" type="radio" name="q1" value="0" required>
+                                    <span><%= opcionA %></span>
+                                </label>
+                                <label class="list-group-item d-flex gap-3 py-3 border-0 bg-light rounded-3">
+                                    <input class="form-check-input flex-shrink-0" type="radio" name="q1" value="10" required>
+                                    <span><%= opcionB %></span>
+                                </label>
                             </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="q1" value="10" required>
-                                <label class="form-check-label"><%= opcionB %></label>
-                            </div>
                             
-                            <hr>
-                            <button type="submit" name="accion" value="ValidarLeccion" class="btn btn-primary">
-                                Enviar Respuestas y Continuar
+                            <button type="submit" name="accion" value="ValidarLeccion" class="btn btn-dark btn-lg px-5 rounded-pill shadow">
+                                Enviar y Seguir <i class="fas fa-arrow-right ms-2"></i>
                             </button>
                         </form>
                     </div>
                 </div>
-            <% } // Aquí cierra el bloque else %>
+            <% } %>
         </main>
     </div>
 </div>

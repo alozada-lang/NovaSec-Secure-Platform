@@ -33,7 +33,7 @@ public class Controlador extends HttpServlet {
         if (accion == null || accion.equalsIgnoreCase("listar")) {
             List<Consejo> lista = dao.listar();
             request.setAttribute("lista", lista);
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+            request.getRequestDispatcher("indexdos.jsp").forward(request, response);
         } 
         
         // 2. REGISTRO DE USUARIOS
@@ -91,6 +91,7 @@ public class Controlador extends HttpServlet {
             session.setAttribute("usuario", userLogueado);
             response.sendRedirect("curso.jsp?leccion=" + (leccionID + 1));
         }
+        
 
         // 6. GUARDAR COMENTARIO FINAL
         else if (accion.equalsIgnoreCase("GuardarComentario")) {

@@ -10,7 +10,7 @@
         return; 
     }
 
-    // 🔥 CÓDIGO NUEVO PARA EVITAR EL CACHÉ DEL BOTÓN ATRÁS 🔥
+    // 🔥 CÓDIGO PARA EVITAR EL CACHÉ DEL BOTÓN ATRÁS 🔥
     response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1
     response.setHeader("Pragma", "no-cache"); // HTTP 1.0
     response.setDateHeader("Expires", 0); // Proxies
@@ -18,12 +18,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>GenAI Academy - Lozada 144</title>
+        <title>NovaSec Consulting - Lozada 144</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
         <style>
             .hero-section { background: #1a237e; color: white; padding: 60px 0; }
-            /* Mejoré un poco el efecto hover para que se vea más moderno */
             .card-hover:hover { transform: translateY(-5px); transition: 0.3s; box-shadow: 0 10px 20px rgba(0,0,0,0.2) !important; }
         </style>
     </head>
@@ -34,12 +33,12 @@
                 
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
+                        <%-- Se mantiene este enlace como el principal para Auditoría --%>
                         <a class="nav-link text-warning" href="Controlador?accion=ListarLogs"><i class="fas fa-shield-alt"></i> Auditoría WAF</a>
                     </li>
                 </ul>
 
                 <div class="d-flex align-items-center">
-                    <%-- BARRA INTELIGENTE: Dependiendo de si hay sesión o no --%>
                     <% if(userLogueado != null) { %>
                         <span class="text-white me-3"><i class="fas fa-user"></i> Bienvenido, <%= userLogueado.getUser() %></span>
                         <a href="Controlador?accion=Salir" class="btn btn-outline-danger btn-sm">Cerrar Sesión</a>
@@ -53,7 +52,7 @@
         <header class="hero-section text-center">
             <div class="container">
                 <h1>Academia de IA Generativa</h1>
-                <p class="lead">Aprende a manejar la IA generativa de forma dinámica y segura.</p>
+                <p class="lead">Aprende a manejar la IA generativa de forma dinámica y segura con NovaSec.</p>
             </div>
         </header>
 
@@ -93,20 +92,44 @@
                     </div>
                 </div>
 
-                <div class="col-md-6 mt-5">
+                <%-- SECCIÓN DE SEGURIDAD AVANZADA --%>
+                
+                <div class="col-md-5 mt-4">
                     <div class="card shadow card-hover border-danger">
                         <div class="card-body text-center">
                             <i class="fas fa-user-shield fa-3x mb-3 text-danger"></i>
-                            <h5>Monitor de Ataques</h5>
-                            <p>Revisa los intentos de intrusión bloqueados por el WAF.</p>
-                            <a href="Controlador?accion=ListarLogs" class="btn btn-outline-danger">
-                                Ver Bitácora de Seguridad
-                            </a>
+                            <h5>Monitor de Ataques (WAF)</h5>
+                            <p>Revisa los intentos de intrusión bloqueados por el filtro de seguridad.</p>
+                            <a href="Controlador?accion=ListarLogs" class="btn btn-outline-danger">Ver Bitácora</a>
+                        </div>
+                    </div>
+                </div>
+
+                <%-- NUEVO BOTÓN PARA EL TEMA OPTATIVO 2FA --%>
+                <div class="col-md-5 mt-4">
+                    <div class="card shadow card-hover border-info">
+                        <div class="card-body text-center">
+                            <i class="fas fa-key fa-3x mb-3 text-info"></i>
+                            <h5>Doble Factor (2FA)</h5>
+                            <p>Prueba el simulador de autenticación OTP para el acceso administrativo.</p>
+                            <a href="dos_factor.jsp" class="btn btn-outline-info">Abrir Sandbox 2FA</a>
                         </div>
                     </div>
                 </div>
 
             </div>
         </main>
+                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('auth') === 'success') {
+        Swal.fire({
+            icon: 'success',
+            title: '¡Muy bien!',
+            text: 'Autenticación de Segundo Factor completada con éxito. Acceso administrativo concedido.',
+            confirmButtonColor: '#1a237e'
+        });
+    }
+</script>
     </body>
 </html>
