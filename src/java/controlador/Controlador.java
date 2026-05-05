@@ -19,6 +19,9 @@ public class Controlador extends HttpServlet {
     Usuario u = new Usuario();
     
     ComentarioDAO comDao = new ComentarioDAO(); // Motor para los comentarios
+    
+    // --- AQUÍ AGREGAMOS LA INSTANCIA DE BITACORA ---
+    BitacoraDAO bDao = new BitacoraDAO();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -133,6 +136,13 @@ public class Controlador extends HttpServlet {
             int id = Integer.parseInt(request.getParameter("id"));
             dao.eliminar(id);
             response.sendRedirect("Controlador?accion=listar");
+        }
+        
+        // --- 8. NUEVO CASO: MOSTRAR LOGS DEL WAF ---
+        else if (accion.equalsIgnoreCase("ListarLogs")) {
+            List<Bitacora> listaLogs = bDao.listarAtaques();
+            request.setAttribute("listaAtaques", listaLogs);
+            request.getRequestDispatcher("logs.jsp").forward(request, response);
         }
     }
 

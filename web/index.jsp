@@ -35,24 +35,16 @@
                                 <div class="mb-3">
                                     <label>Categoría:</label>
                                     <select name="txtCategoria" class="form-select">
-                                        <option>Tip Técnico</option>
+                                        <option>Tip personal</option>
                                         <option>Legislación</option>
-                                        <option>Consejo Personal</option>
+                                        <option>Consejo general</option>
                                     </select>
                                 </div>
                                 <div class="mb-3">
                                     <label>Descripción:</label>
                                     <textarea name="txtDesc" class="form-control" rows="3" required></textarea>
                                 </div>
-                                <div class="mb-3">
-                                    <label>Nivel de Riesgo:</label>
-                                    <select name="txtRiesgo" class="form-select">
-                                        <option>Bajo</option>
-                                        <option>Medio</option>
-                                        <option>Alto</option>
-                                        <option>Crítico</option>
-                                    </select>
-                                </div>
+                              
                                 <input type="submit" name="accion" value="Agregar" class="btn btn-success w-100">
                             </form>
                         </div>
@@ -70,7 +62,7 @@
                                         <th>TÍTULO</th>
                                         <th>CATEGORÍA</th>
                                         <th>DESCRIPCIÓN</th>
-                                        <th>RIESGO</th>
+                                       
                                         <th>ACCIONES</th>
                                     </tr>
                                 </thead>

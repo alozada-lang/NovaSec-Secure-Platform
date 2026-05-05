@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Superficie de Ataque - Lozada</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #f4f7f9;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .header-scanner {
+            background: #212529;
+            color: #00ff41; /* Color verde terminal */
+            padding: 40px 0;
+            border-bottom: 4px solid #00ff41;
+            text-shadow: 0 0 10px #00ff41;
+        }
+        .card-attack {
+            transition: all 0.3s ease;
+            border: none;
+            border-radius: 15px;
+        }
+        .card-attack:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+            background-color: #ffffff;
+        }
+        .icon-box {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+        }
+        .bg-vuln { background-color: #ffebee; color: #c62828; }
+        .bg-query { background-color: #e3f2fd; color: #1565c0; }
+        
+        /* Animación simple de scanner */
+        .scan-line {
+            height: 2px;
+            background: #00ff41;
+            width: 100%;
+            position: relative;
+            animation: scan 3s infinite;
+        }
+        @keyframes scan {
+            0% { top: 0; opacity: 0; }
+            50% { opacity: 1; }
+            100% { top: 20px; opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header-scanner text-center mb-5">
+        <div class="container">
+            <div class="scan-line mb-3"></div>
+            <h1 class="display-5 fw-bold"><i class="fas fa-microchip"></i> DETECTOR DE SUPERFICIE DE ATAQUE</h1>
+            <p class="lead">Gestión de Vulnerabilidades - Lozada 144</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="row justify-content-center text-center">
+            <div class="col-12 mb-4">
+                <h2 class="fw-light">Seleccione una actividad del sistema</h2>
+                <hr style="width: 100px; margin: auto; border: 2px solid #212529;">
+            </div>
+
+            <div class="col-md-5 mb-4">
+                <div class="card card-attack shadow-sm h-100 p-4">
+                    <div class="card-body">
+                        <div class="icon-box bg-vuln">
+                            <i class="fas fa-bug fa-2x"></i>
+                        </div>
+                        <h3 class="card-title">Registrar</h3>
+                        <p class="text-muted">Dar de alta nuevas vulnerabilidades detectadas en la infraestructura.</p>
+                        <a href="insertar_vulne.jsp" class="btn btn-danger w-100 py-2 fw-bold">
+                            <i class="fas fa-plus-circle"></i> Iniciar Registro
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-5 mb-4">
+                <div class="card card-attack shadow-sm h-100 p-4">
+                    <div class="card-body">
+                        <div class="icon-box bg-query">
+                            <i class="fas fa-search-dollar fa-2x"></i>
+                        </div>
+                        <h3 class="card-title">Consultar</h3>
+                        <p class="text-muted">Visualizar el listado completo y estatus de las vulnerabilidades actuales.</p>
+                        <a href="listar_vulne.jsp" class="btn btn-primary w-100 py-2 fw-bold">
+                            <i class="fas fa-list-ul"></i> Ver Inventario
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col text-center">
+                <a href="indexdos.jsp" class="btn btn-outline-dark">
+                    <i class="fas fa-arrow-left"></i> Volver a GenAI Academy
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center mt-5 py-4 text-muted">
+        <small>&copy; 2026 Plataforma de Seguridad TI - Lozada 144</small>
+    </footer>
+
+</body>
+</html>

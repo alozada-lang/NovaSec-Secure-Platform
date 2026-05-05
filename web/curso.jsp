@@ -104,16 +104,16 @@
                 String opcionB = "";
 
                 if (idLeccion == 1) {
-                    titulo = "Introducción a la Ciberseguridad";
+                    titulo = "Introducción a la IA Generativa";
                     videoID = "dQw4w9WgXcQ"; // Video de prueba (Rickroll)
-                    pregunta = "¿Cuál es el pilar que asegura que solo personal autorizado vea los datos?";
-                    opcionA = "Disponibilidad";
-                    opcionB = "Confidencialidad";
+                    pregunta = "¿Qué es una 'alucinación' de la IA?";
+                    opcionA = "Cuando la IA inventa datos falsos.";
+                    opcionB = "Cuando la IA se apaga sola.";
                 } else if (idLeccion == 2) {
-                    titulo = "Módulo 2: Phishing y Suplantación";
-                    videoID = "UuuAlP7ay6U"; // 🔥 CAMBIA ESTE ID POR EL DE TU VIDEO DE YT
-                    pregunta = "¿Cuál es la principal característica de un ataque de Phishing?";
-                    opcionA = "Suplantación de identidad para robar datos";
+                    titulo = "Módulo 2: ¿Qué es la inteligencia artificial?";
+                    videoID = "BaaUbPSaZFo"; // 🔥 CAMBIA ESTE ID POR EL DE TU VIDEO DE YT
+                    pregunta = "¿Cuál es una buena práctica de uso?";
+                    opcionA = "Validar la información generada.";
                     opcionB = "Ataque físico a los servidores de la empresa";
                 }
             %>

@@ -2,6 +2,21 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/PC-13/Documents/WorkspaceExamen3/Exa_Lozada_144/src/java/modelo/BitacoraDAO.java</file>
+            <file>file:/C:/Users/PC-13/Documents/WorkspaceExamen3/Exa_Lozada_144/web/guardar.jsp</file>
+            <file>file:/C:/Users/PC-13/Documents/WorkspaceExamen3/Exa_Lozada_144/web/curso.jsp</file>
+            <file>file:/C:/Users/PC-13/Documents/WorkspaceExamen3/Exa_Lozada_144/web/logs.jsp</file>
+            <file>file:/C:/Users/PC-13/Documents/WorkspaceExamen3/Exa_Lozada_144/web/insertar_vulne.jsp</file>
+            <file>file:/C:/Users/PC-13/Documents/WorkspaceExamen3/Exa_Lozada_144/src/java/modelo/ComentarioDAO.java</file>
+            <file>file:/C:/Users/PC-13/Documents/WorkspaceExamen3/Exa_Lozada_144/web/login.jsp</file>
+            <file>file:/C:/Users/PC-13/Documents/WorkspaceExamen3/Exa_Lozada_144/src/java/controlador/Controlador.java</file>
+            <file>file:/C:/Users/PC-13/Documents/WorkspaceExamen3/Exa_Lozada_144/web/indexdos.jsp</file>
+            <file>file:/C:/Users/PC-13/Documents/WorkspaceExamen3/Exa_Lozada_144/web/index.jsp</file>
+            <file>file:/C:/Users/PC-13/Documents/WorkspaceExamen3/Exa_Lozada_144/web/index.html</file>
+            <file>file:/C:/Users/PC-13/Documents/WorkspaceExamen3/Exa_Lozada_144/src/java/modelo/Bitacora.java</file>
+            <file>file:/C:/Users/PC-13/Documents/WorkspaceExamen3/Exa_Lozada_144/src/java/modelo/Comentario.java</file>
+            <file>file:/C:/Users/PC-13/Documents/WorkspaceExamen3/Exa_Lozada_144/web/listar_vulne.jsp</file>
+        </group>
     </open-files>
 </project-private>
